@@ -17,13 +17,13 @@ const forecast = (lat, long, callback) => {
 		if (body.error) {
 			callback("Unable to search location!", undefined);
 		} else {
-			callback(
-				undefined,
-				"Temperature " +
-					body.current.temperature +
-					" and wind speed " +
-					body.current.wind_speed
-			);
+			callback(undefined, {
+				temperature: body.current.temperature,
+				wind_speed: body.current.wind_speed,
+				feelslike: body.current.feelslike,
+				weather_descriptions: body.current.weather_descriptions,
+				weather_icons: body.current.weather_icons,
+			});
 		}
 	});
 };
