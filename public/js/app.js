@@ -11,16 +11,14 @@ weatherform.addEventListener("submit", (e) => {
 	const location = searchval.value;
 	msg1.textContent = "laoding...";
 
-	fetch("http://127.0.0.1:3000/weather?address=" + location).then(
-		(response) => {
-			response.json().then((data) => {
-				if (data.error) {
-					console.log(data.error);
-				} else {
-					msg1.textContent = data.location;
-					msg2.textContent = data.forecast;
-				}
-			});
-		}
-	);
+	fetch("/weather?address=" + location).then((response) => {
+		response.json().then((data) => {
+			if (data.error) {
+				console.log(data.error);
+			} else {
+				msg1.textContent = data.location;
+				msg2.textContent = data.forecast;
+			}
+		});
+	});
 });
